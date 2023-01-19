@@ -6,14 +6,14 @@ const JWT = require("jsonwebtoken")
 const orderCtrl = {
     addOrderProduct: async (req, res) =>{
         try {
-            const {productId, userId, count, address, district, city} = req.body
+            const {productId, userId, count, district, city} = req.body
             
             const product = await Product.findById(productId)
 
             if(product){
                 const price = product.price * count
 
-                const newOrder = new Order({productId: productId, userId: userId, count, price, address, district, city, })
+                const newOrder = new Order({productId: productId, userId: userId, count, price, district, city, })
                 
                 newOrder.save()
             
